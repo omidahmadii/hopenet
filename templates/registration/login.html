@@ -1,9 +1,19 @@
 {% load static %}
+{% load widget_tweaks %}
+
 <head>
   <title>ورود و ثبت نام</title>
     <link rel="stylesheet" type="text/css" href="{% static 'registration/login/style.css' %}">
 </head>
 <body>
+
+    {% if form.non_field_errors %}
+        <dic class="errors">
+            {% for error in form.form.non_field_errors%}
+                <span>{{error}}</span>
+        </dic>
+    {% endif %}
+
   <div class="container" id="container">
     <!-- sign in page -->
     <div class="form-container sign-in-container">
@@ -12,12 +22,12 @@
         <div class="form__input-group">
           <label for="username">نام کاربری</label>
 <!--          <input type="text" class="form__input" name="username" id="username" maxlength="20" required>-->
-            {{ form.username }}
+            {{ form.username|add_class:"input100" }}
         </div>
         <div class="form__input-group">
           <label for="pass">رمز عبور</label>
 <!--          <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>-->
-            {{ form.password }}
+            {{ form.password|add_class:"input100 }}
         </div>
         <div class="form__input-group">
           <button type="submit" class="form__button">ورود</button>

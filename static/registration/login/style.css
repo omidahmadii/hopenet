@@ -183,3 +183,10 @@ input {
 .container.right-panel-active .overlay-right {
 	transform: translateX(20%);
 }
+
+.errors {
+	color: red;
+	background-color: #fbd4d4;
+	padding:20px 30px;
+	text-align: center;
+}
