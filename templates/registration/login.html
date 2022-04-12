@@ -7,27 +7,44 @@
 </head>
 <body>
 
-
-  <div class="container" id="container">
+     <div>
       {% if form.non_field_errors %}
-        <dic class="errors">
-            {% for error in form.form.non_field_errors%}
+        <div class="errors">
+            {% for error in form.non_field_errors %}
                 <span>{{error}}</span>
-        </dic>
-    {% endif %}
-    <!-- sign in page -->
-    <div class="form-container sign-in-container">
+            {% endfor %}
+        </div>
+      {% endif %}
+     </div>
+     <div class="container" id="container">
+
+<!-- sign in page -->
+         <div class="form-container sign-in-container">
       <form method="POST" action="#" class="form" id="login">{% csrf_token %}
         <h1 class="form__title">ورود</h1>
         <div class="form__input-group">
           <label for="username">نام کاربری</label>
-<!--          <input type="text" class="form__input" name="username" id="username" maxlength="20" required>-->
+        <!-- <input type="text" class="form__input" name="username" id="username" maxlength="20" required>-->
             {{ form.username|add_class:"input100" }}
+            {% if form.username.errors %}
+                <div class="errors">
+            {% for error in form.username.errors %}
+                <span>{{error}}</span>
+            {% endfor %}
+                 </div>
+      {% endif %}
         </div>
         <div class="form__input-group">
           <label for="pass">رمز عبور</label>
-<!--          <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>-->
-            {{ form.password|add_class:"input100 }}
+        <!--<input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>-->
+            {{ form.password|add_class:"input100" }}
+            {% if form.password.errors %}
+                <div class="errors">
+            {% for error in form.password.errors %}
+                <span>{{error}}</span>
+            {% endfor %}
+                 </div>
+      {% endif %}
         </div>
         <div class="form__input-group">
           <button type="submit" class="form__button">ورود</button>
@@ -35,19 +52,19 @@
      </form>
     </div>
 
-   <!--  create account page -->
-   <div class="form-container sign-up-container">
+<!--  create account page -->
+         <div class="form-container sign-up-container">
      <form method="POST" action="#" class="form" id="register">{% csrf_token %}
        <h1 class="form__title">ثبت نام</h1>
        <div class="form__input-group">
          <label for="username"> نام کاربری</label>
-<!--         <input type="text" class="form__input" name="username" id="username" maxlength="20" required>-->
-           {{ form.username|add_class:"input100 }}
+        <!--         <input type="text" class="form__input" name="username" id="username" maxlength="20" required>-->
+           {{ form.username|add_class:"input100" }}
        </div>
         <div class="form__input-group">
           <label for="pass">رمز عبور</label>
-<!--          <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>-->
-            {{ form.password|add_class:"input100 }}
+        <!--          <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>-->
+            {{ form.password|add_class:"input100" }}
         </div>
        <button class="form__button" type="submit">ثبت نام</button>
      </form>

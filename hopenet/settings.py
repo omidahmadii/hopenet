@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
     'extensions',
-    'widget.tweaks',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
