@@ -38,3 +38,11 @@ class AuthorAccessMixin():
 			return super().dispatch(request, *args, **kwargs)
 		else:
 			raise Http404("You Are not Permitted To Update this Article ")
+
+
+class SuperUserAccessMixin():
+	def dispatch(self, request, *args, **kwargs):
+		if request.user.is_superuser:
+			return super().dispatch(request, *args, **kwargs)
+		else:
+			raise Http404("You Are not SuperUser")
