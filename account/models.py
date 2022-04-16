@@ -3,11 +3,13 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-	is_auther = models.BooleanField(default=False,verbose_name='وضعیت نویسنگی')
+	is_author = models.BooleanField(default=False, verbose_name='وضعیت نویسنگی')
 	special_user = models.DateTimeField(default=timezone.now, verbose_name='زمان کاربری ویژه')
 
-	def is_special_user():
+	def is_special_user(self):
 		if self.special_user > timezone.now():
 			return True
 		else:
 			return False
+	is_special_user.boolean = True
+	is_special_user.short_description = "وضعیت کاربر ویژه"
