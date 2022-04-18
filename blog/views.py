@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from account.models import User
 from .models import Article, Category
 from django.views.generic import ListView, DetailView
-
+from account.mixins import AuthorAccessMixin
 
 class ArticleList(ListView):
     # model = Article
@@ -20,10 +20,17 @@ class ArticleList(ListView):
 class ArticleDetail(DetailView):
 
     #template_name = 'blog/article_detail.html' # Default is article_detail.html
-
     def get_object(self):
         slug = self.kwargs.get('slug')   # keyword Arguments
-        return get_object_or_404(Article, slug=slug, status='p')
+        return get_object_or_404(Article.objects.published(), slug=slug)
+
+
+class ArticlePreview(AuthorAccessMixin, DetailView):
+
+    #template_name = 'blog/article_detail.html' # Default is article_detail.html
+    def get_object(self):
+        pk = self.kwargs.get('pk')   # keyword Arguments
+        return get_object_or_404(Article, pk=pk)
 
 
 class CategoryList(ListView):
