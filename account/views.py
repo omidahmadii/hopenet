@@ -16,9 +16,9 @@ from django.views.generic import (
 )
 from blog.models import Article
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from .models import User
 from .forms import ProfileForm
-from django.contrib.auth.views import LoginView
 
 
 class ArticleList(AuthorsAccessMixin, ListView):
@@ -71,3 +71,4 @@ class Login(LoginView):
             return reverse_lazy("account:home")
         else:
             return reverse_lazy("account:profile")
+

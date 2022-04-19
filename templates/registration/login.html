@@ -3,13 +3,11 @@
 
 <head>
   <title>ورود و ثبت نام</title>
+
     <link rel="stylesheet" type="text/css" href="{% static 'registration/login/style.css' %}">
+
 </head>
 <body>
-
-    <div>
-        <span>Omid</span>
-    </div>
      <div>
       {% if form.non_field_errors %}
         <div class="errors">
@@ -52,6 +50,8 @@
         <div class="form__input-group">
           <button type="submit" class="form__button">ورود</button>
         </div>
+          <a  href="{% url 'password_reset' %}" style="margin-top:10px;">فراموشی رمز عبور</a>
+
      </form>
     </div>
 

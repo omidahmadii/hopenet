@@ -43,7 +43,7 @@ class AuthorsAccessMixin():
 			else:
 				return redirect("account:profile")
 		else:
-			return redirect("account:profile")
+			return redirect("login")
 
 
 class SuperUserAccessMixin():
