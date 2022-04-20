@@ -1,94 +1,117 @@
 {% load static %}
 {% load widget_tweaks %}
 
+<html lang="fa">
 <head>
-  <title>ورود و ثبت نام</title>
-
-    <link rel="stylesheet" type="text/css" href="{% static 'registration/login/style.css' %}">
-
+	<title>ورود</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/vendor/bootstrap/css/bootstrap.min.css' %}" >
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}" >
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/fonts/iconic/css/material-design-iconic-font.min.css' %}" >
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/vendor/animate/animate.css' %}" >
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/vendor/css-hamburgers/hamburgers.min.css' %}" >
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/vendor/animsition/css/animsition.min.css' %}" >
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/vendor/select2/select2.min.css' %}" >
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/vendor/daterangepicker/daterangepicker.css' %}" >
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/css/util.css' %}" >
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/css/main.css' %}" >
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/css/rtl.css' %}" >
+<!--===============================================================================================-->
 </head>
 <body>
-     <div>
-      {% if form.non_field_errors %}
-        <div class="errors">
-            {% for error in form.non_field_errors %}
-                <span>{{error}}</span>
-            {% endfor %}
-        </div>
-      {% endif %}
-     </div>
-     <div class="container" id="container">
 
-<!-- sign in page -->
-         <div class="form-container sign-in-container">
-      <form method="POST" action="#" class="form" id="login">{% csrf_token %}
-        <h1 class="form__title">ورود</h1>
-        <div class="form__input-group">
-          <label for="username">نام کاربری</label>
-        <!-- <input type="text" class="form__input" name="username" id="username" maxlength="20" required>-->
-            {{ form.username|add_class:"input100" }}
-            {% if form.username.errors %}
-                <div class="errors">
-            {% for error in form.username.errors %}
-                <span>{{error}}</span>
-            {% endfor %}
-                 </div>
-        {% endif %}
-        </div>
-        <div class="form__input-group">
-          <label for="pass">رمز عبور</label>
-        <!--<input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>-->
-            {{ form.password|add_class:"input100" }}
-            {% if form.password.errors %}
-                <div class="errors">
-            {% for error in form.password.errors %}
-                <span>{{error}}</span>
-            {% endfor %}
-                 </div>
-      {% endif %}
-        </div>
-        <div class="form__input-group">
-          <button type="submit" class="form__button">ورود</button>
-        </div>
-          <a  href="{% url 'password_reset' %}" style="margin-top:10px;">فراموشی رمز عبور</a>
-
-     </form>
-    </div>
-
-<!--  create account page -->
-         <div class="form-container sign-up-container">
-     <form method="POST" action="#" class="form" id="register">{% csrf_token %}
-       <h1 class="form__title">ثبت نام</h1>
-       <div class="form__input-group">
-         <label for="username"> نام کاربری</label>
-        <!--         <input type="text" class="form__input" name="username" id="username" maxlength="20" required>-->
-           {{ form.username|add_class:"input100" }}
-       </div>
-        <div class="form__input-group">
-          <label for="pass">رمز عبور</label>
-        <!--          <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>-->
-            {{ form.password|add_class:"input100" }}
-        </div>
-       <button class="form__button" type="submit">ثبت نام</button>
-     </form>
-   </div>
-
-   <div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>خوش آمدید!</h1>
-				<p>لطفا بااطلاعات کاربری خود وارد شوید.</p>
-				<button class="ghost" id="signIn">ورود</button>
+	<div class="limiter">
+		{% if form.non_field_errors %}
+			<div class="errors">
+				{% for error in form.non_field_errors %}
+				<span>{{error}}</span>
+				{% endfor %}
 			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>سلام !</h1>
-				<p>جهت ثبت نام در سایت از این بخش اقدام نمایید.</p>
-				<button class="ghost" id="signUp">ثبت نام</button>
+		{% endif %}
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="post">
+					{% csrf_token %}
+					<span class="login100-form-title p-b-26 myfont">
+						ورود به سایت
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						{{ form.username|add_class:"input100" }}
+						{% if form.username.errors %}
+							<div class="errors">
+								{% for error in form.username.errors %}
+									<span>{{error}}</span>
+								{% endfor %}
+							 </div>
+						{% endif %}
+						<span class="focus-input100" data-placeholder="نام کاربری"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						{{ form.password|add_class:"input100" }}
+						{% if form.password.errors %}
+							<div class="errors">
+						{% for error in form.password.errors %}
+							<span>{{error}}</span>
+						{% endfor %}
+							 </div>
+						{% endif %}
+						<span class="focus-input100" data-placeholder="رمز عبور"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn myfont">
+								ورود
+							</button>
+						</div>
+					</div>
+
+
+				</form>
 			</div>
 		</div>
 	</div>
- </div>
 
-  <script src="{% static 'registration/login/script.js' %}"></script>
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="{% static 'registration/login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'registration/login/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'registration/login/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'registration/login/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'registration/login/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'registration/login/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'registration/login/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'registration/login/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'registration/login/js/main.js' %}"></script>
 
 </body>
+</html>
